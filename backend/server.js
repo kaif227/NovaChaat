@@ -11,9 +11,10 @@ const PORT = 8080;
 
 app.use(express.json());
 
+
 app.use(cors({
   origin: [
-    "https://nova-backend-2tbn.onrender.com"
+    "https://novachat-dd7q.onrender.com"  // ✅ your frontend domain
   ],
   methods: ["GET", "POST"],
   credentials: true
