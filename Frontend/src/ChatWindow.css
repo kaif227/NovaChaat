@@ -1,0 +1,399 @@
+.chatWindow{
+    background-color: #212121;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    }
+
+    /* navbar */
+.navbar{
+    height: 60px;
+    width: 100%;
+    background-color: #212121;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 0 20px; */
+    /* box-sizing: border-box; */
+    /* border-bottom: 1px solid #333; */
+    }
+    
+.navbar span{
+    margin: 1rem 2rem;
+ }
+
+.userIconDiv{
+    margin: 1rem 2rem;
+}
+
+.userIcon{
+    margin: 1rem 2rem;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #339cff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    }
+
+
+
+  /* chatInput */
+.chatInput{
+    width: 100%;
+    display: flex;
+    flex-direction: column;/* kk */
+    justify-content: center;
+    align-items: center;
+}
+ 
+.inputBox{
+    width: 100%;
+    position: relative;
+    max-width: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+input{
+    width: 100%;
+    max-width: 700px;
+    height: 60px;
+    border-radius: 14px;
+    border: none;
+    padding: 0 20px;
+    background-color: #333;
+    font-size: 16px;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 54px 55px,
+    rgba(0, 0, 0, 0.15) 0 -12px 30px,
+    rgba(0, 0, 0, 0.12) 0 4px 6px,
+    rgba(0, 0, 0, 0.1) 0 12px 3px,
+    rgba(0, 0, 0, 0.09) 0 -3px 5px;
+};
+/* 
+.submitBtn{
+    cursor: pointer;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+
+} */
+ /* #submitBtn{
+       cursor: pointer;
+       height: 35px;
+       width: 35px;
+       font-size: 20px;
+       right: 10px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       position: absolute;
+ } */
+ #submitBtn:hover{
+    color: #339cff; 
+    transition: 0.3s;
+    }
+.info{
+    padding: 0.5rem;
+    color: #b4b4b4;
+    font-size: 0.8rem;
+
+}
+.loader{
+    margin: 0 auto;
+}
+/* dropDown css */
+.dropDown{
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    width: 150px;
+    border-radius: 10px;
+    background-color:#323232;
+    padding: 0.3rem 0.5rem;
+    text-align: left;
+    z-index: 1000;
+    box-shadow: 0px 2px 8px rgba(0,0,0,1);
+    cursor: pointer;
+    
+}
+.dropDownItem{
+    font-size: 0.9rem;
+    margin: 0.3rem;
+    padding: 0.5rem 0.2rem;
+
+}
+.dropDownItem:hover{
+    background-color: rgba(100,100,100,0.2);
+    border-radius: 10px;
+}
+.novadropDown{
+    position: absolute;
+    top: 4rem;
+    left: 17rem;
+    width: 17%;
+    height: 19%;
+    border-radius: 10px;
+    background-color:#323232;
+    padding: 0.3rem 0.5rem;
+    text-align: left;
+    z-index: 1000;
+    box-shadow: 0px 2px 8px rgba(0,0,0,1);
+    cursor: pointer;
+
+}
+
+    
+/* nn */
+/* Overlay behind dialog */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+}
+
+/* Dialog box */
+.upgrade-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1e1e1e;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  width: 350px;
+  padding: 20px;
+  z-index: 1001;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Header */
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  color: #ff5c5c;
+}
+
+/* Body */
+.dialog-body {
+  margin-top: 15px;
+}
+
+.plan {
+  background: #2c2c2c;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.plan i {
+  color: gold;
+  font-size: 1.5rem;
+}
+
+.upgrade-btn {
+  margin-top: 10px;
+  background: #007bff;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upgrade-btn:hover {
+  background: #0056d4;
+}
+.dropDownItem p {
+  margin: 5px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+
+/* Responsive Chat Window */
+@media (max-width: 1024px) {
+  .chatWindow {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .navbar span {
+    font-size: 1.1rem;
+    margin: 0.5rem 1rem;
+  }
+
+  .userIconDiv {
+    margin: 0.5rem 1rem;
+  }
+
+  .inputBox {
+    max-width: 90%;
+  }
+
+  input {
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .info {
+    font-size: 0.7rem;
+  }
+
+  .dropDown {
+    top: 3.5rem;
+    right: 2rem;
+  }
+
+  .upgrade-dialog {
+    width: 300px;
+  }
+    .novadropDown{
+    position: absolute;
+    top: 4rem;
+    left: 1em;
+    width: 180px;
+    height: 150px;
+}
+}
+
+/* For mobile (below 768px) */
+@media (max-width: 768px) {
+  .chatWindow {
+    height: 100vh;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .navbar {
+    height: 55px;
+    padding: 0 0.5rem;
+  }
+
+  .navbar span {
+    font-size: 1rem;
+    margin: 2rem 2.5rem;
+  }
+
+  .userIcon {
+    height: 28px;
+    width: 28px;
+    position: relative;
+    right: -50%;
+    font-size: 16px;
+  }
+
+  .inputBox {
+    max-width: 95%;
+    max-height: 40%;
+  }
+
+  input {
+    height: 45px;
+    font-size: 14px;
+    padding: 0 15px;
+  }
+
+  #submitBtn {
+    height: 30px;
+    width: 30px;
+    right: 10px;
+  }
+
+  .dropDown {
+    width: 130px;
+    right: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .upgrade-dialog {
+    width: 85%;
+    padding: 15px;
+  }
+
+  .plan p {
+    font-size: 0.85rem;
+  }
+
+  .upgrade-btn {
+    width: 100%;
+    padding: 10px;
+  }
+  
+}
+
+/* Very small screens (below 480px) */
+@media (max-width: 480px) {
+  .navbar span {
+    font-size: 0.9rem;
+  }
+
+  .inputBox {
+    max-width: 100%;
+  }
+
+  input {
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .info {
+    font-size: 0.65rem;
+    text-align: center;
+    padding: 0.3rem;
+  }
+
+  .upgrade-dialog {
+    width: 90%;
+  }
+  .novadropDown{
+    position: absolute;
+    top: 4rem;
+    left: 1rem;
+    width: 150px;
+    height: 180px;
+}
+}
