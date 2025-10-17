@@ -10,14 +10,14 @@ const PORT = 8080;
 
 
 app.use(express.json());
-app.use(cors());
-// app.use(cors({
-//   origin: [
-//     "https://novachat.onrender.com"
-//   ],
-//   methods: ["GET", "POST"],
-//   credentials: true
-// }));
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173"
+  ],
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 
 app.use('/api', chatRouter);
 
