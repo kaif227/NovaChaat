@@ -81,7 +81,7 @@ function Sidebar() {
     <section className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
 
       <button onClick={createNewChat}>
-        <img src="src/assets/blacklogo.png" alt="NovaLogo" className="logo" />
+        <img src="/blacklogo.png" alt="NovaLogo" className="logo" />
         <span>
           <i className="fa-solid fa-pen-to-square"></i>
         </span>
