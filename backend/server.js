@@ -10,14 +10,23 @@ const PORT = 8080;
 
 
 app.use(express.json());
-
+const allowedOrigin = [
+  "https://novachat-dd7q.onrender.com",
+  "http://localhost:5173"
+]
 app.use(cors({
-  origin: [
-    "http://localhost:5173"
-  ],
-  methods: ["GET", "POST"],
-  credentials: true
-}));
+  origin: function(origin, callback){
+  if(!origin || allowedOrigin.includes(origin)){
+    callback(null, true)
+
+  }else{
+  callback(new Error("Not allowed by CORS"))
+}},
+methods: ["GET", "POST","PUT","DELETE"],
+credentials: true
+}))
+
+
 
 app.use('/api', chatRouter);
 
