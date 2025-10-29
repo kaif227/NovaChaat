@@ -6,6 +6,31 @@
   scroll-behavior: smooth;
   margin: 0 auto;
 }
+.heading {
+
+
+  /* Gradient magic */
+background: linear-gradient(90deg, #001f3f, #007ea7, #00f5d4, #00a8e8);
+
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGradient 5s ease infinite;
+  
+}
+
+@keyframes textGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
          
 /* Custom Scrollbar (modern feel) */
 .chats::-webkit-scrollbar {
