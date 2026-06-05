@@ -34,7 +34,7 @@ function Chat() {
   return (
     <>
       {newChat && <h2 className="heading">Start a New Chat with Nova!</h2>}
-      <div className="chats">
+      {/* <div className="chats">
         {prevChats?.slice(0, -1).map((chat, idx) => 
           <div
             className={chat.role === "user" ? "userDiv" : "gptDiv"} key={idx}
@@ -65,7 +65,27 @@ function Chat() {
             }
            </>  
           )}
-      </div>
+      </div> */}
+      <div className="chats">
+  {prevChats?.map((chat, idx) => (
+    <div
+      className={chat.role === "user" ? "userDiv" : "gptDiv"}
+      key={idx}
+    >
+      {chat.role === "user" ? (
+        <p className="userMessage">{chat.content}</p>
+      ) : (
+        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+          {
+            idx === prevChats.length - 1 && latestReply
+              ? latestReply
+              : chat.content
+          }
+        </ReactMarkdown>
+      )}
+    </div>
+  ))}
+</div>
     </>
   );
 }
