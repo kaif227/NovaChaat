@@ -1,9 +1,9 @@
 import "./Sidebar.css";
-import { useContext, useEffect,useState } from "react";
-import { MyContext } from "./MyContext.jsx"; 
+import { useContext, useEffect, useState } from "react";
+import { MyContext } from "./MyContext.jsx";
 import { v1 as uuidv1 } from "uuid";
 function Sidebar() {
-   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const {
     allThreads,
     setAllThreads,
@@ -45,75 +45,113 @@ function Sidebar() {
   };
   const changeThread = async (newThreadId) => {
     setCurrThreadId(newThreadId);
+
     try {
-      const response = await fetch(
-        `${BACKEND_URL}api/thread/${newThreadId}`
-      );
+
+      const response = await fetch(`${BACKEND_URL}/api/thread/${newThreadId}`);
+
       const res = await response.json();
-      console.log(res);
+
+      console.log("Thread Data:", res);
+
       setPrevChats(res);
       setNewChat(false);
       setReply(null);
+
+      // optional for mobile sidebar
+      setIsSidebarOpen(false);
     } catch (err) {
       console.log(err);
     }
   };
-  const deleteThread = async (threadId)=>{
-    try{
-        const response = await fetch(`${BACKEND_URL}/api/thread/${threadId}`,{method:"DELETE"});
-        const res = await response.json()
-        console.log(res);
-        setAllThreads(prev => prev.filter(thread =>thread.threadId !== threadId));
-        if(threadId === currThreadId){
-            createNewChat()
-        }
-        
-    }catch(err){
-        console.log(err)
+  // const deleteThread = async (threadId)=>{
+  //   try{
+  //       const response = await fetch(`${BACKEND_URL}/api/thread/${threadId}`,{method:"DELETE"});
+  //       const res = await response.json()
+  //       console.log(res);
+  //       setAllThreads(prev => prev.filter(thread =>thread.threadId !== threadId));
+  //       if(threadId === currThreadId){
+  //           createNewChat()
+  //       }
+
+  //   }catch(err){
+  //       console.log(err)
+  //   }
+  // }
+
+  const deleteThread = async (threadId) => {
+    try {
+
+      const response = await fetch(`${BACKEND_URL}/api/thread/${threadId}`, {
+        method: "DELETE",
+      });
+
+      const res = await response.json();
+
+      console.log(res);
+
+      setAllThreads((prev) =>
+        prev.filter((thread) => thread.threadId !== threadId),
+      );
+
+      if (threadId === currThreadId) {
+        createNewChat();
+      }
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
   return (
     <>
-      <div className="hamburger" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+      <div
+        className="hamburger"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
         <i className="fa-solid fa-bars"></i>
       </div>
 
-    <section className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+      <section className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+        <button onClick={createNewChat}>
+          <img src="/mainLogo.svg" alt="NovaLogo" className="logo" />
+          <span>
+            <i className="fa-solid fa-pen-to-square"></i>
+          </span>
+        </button>
+        <div className="history">
+          <ul>
+            {allThreads?.map((thread, idx) => (
+              <li
+                key={idx}
+                onClick={() => changeThread(thread.threadId)}
+                className={
+                  thread.threadId === currThreadId ? "highlighted" : ""
+                }
+              >
+                {thread.title}
+                <i
+                  className="fa-solid fa-trash"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteThread(thread.threadId);
+                  }}
+                ></i>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <button onClick={createNewChat}>
-        <img src="/mainLogo.svg" alt="NovaLogo" className="logo" />
-        <span>
-          <i className="fa-solid fa-pen-to-square"></i>
-        </span>
-      </button>
-      <div className="history">
-        <ul>
-          {allThreads?.map((thread, idx) => (
-            <li key={idx}
-             onClick={() => changeThread(thread.threadId)}
-             className={thread.threadId === currThreadId ? "highlighted":""}
-             >
-              {thread.title}
-              <i className="fa-solid fa-trash"
-               onClick={(e)=>{
-                e.stopPropagation();
-                deleteThread(thread.threadId)
-              }}
-              ></i>
-            </li>
-          ))}
-        </ul>
-      </div>
-    
-      <div className="sign">
-        <span>
-          <i className="fa-solid fa-user"></i>
-        </span>
-        <span>NovaChat &hearts;</span>
-      </div>
-    </section>
-     {isSidebarOpen && (
-        <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)}></div>
+        <div className="sign">
+          <span>
+            <i className="fa-solid fa-user"></i>
+          </span>
+          <span>NovaChat &hearts;</span>
+        </div>
+      </section>
+      {isSidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
       )}
     </>
   );
