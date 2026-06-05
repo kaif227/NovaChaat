@@ -9,27 +9,56 @@ function Chat() {
   const { newChat, prevChats,reply } = useContext(MyContext);
   const [latestReply, setLatestReply] = useState(null);
 
-  useEffect(()=>{
-    if(reply === null){
-      setLatestReply(null);
-      return;
+  // useEffect(()=>{
+  //   if(reply === null){
+  //     setLatestReply(null);
+  //     return;
+  //   }
+    
+  //   if(!prevChats?.length) return;
+
+  //   const content = reply.split(" ")
+
+  //   let idx = 0;
+  //   const interval = setInterval(()=>{
+  //     setLatestReply(content.slice(0,idx+1).join(" "));
+
+  //     idx++;
+  //     if(idx >= content.length) clearInterval(interval)
+  //   },40);
+
+  //   return()=> clearInterval(interval);
+    
+  // },[prevChats,reply])
+
+  useEffect(() => {
+
+  if(reply === null){
+    setLatestReply(null);
+    return;
+  }
+
+  if(!prevChats?.length) return;
+
+  const content = reply.split(" ");
+
+  let idx = 0;
+
+  const interval = setInterval(() => {
+
+    setLatestReply(content.slice(0, idx + 1).join(" "));
+
+    idx++;
+
+    if(idx >= content.length){
+      clearInterval(interval);
     }
-    
-    if(!prevChats?.length) return;
 
-    const content = reply.split(" ")
+  }, 40);
 
-    let idx = 0;
-    const interval = setInterval(()=>{
-      setLatestReply(content.slice(0,idx+1).join(" "));
+  return () => clearInterval(interval);
 
-      idx++;
-      if(idx >= content.length) clearInterval(interval)
-    },40);
-
-    return()=> clearInterval(interval);
-    
-  },[prevChats,reply])
+}, [reply]);
 
   return (
     <>
